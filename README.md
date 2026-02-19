@@ -1,4 +1,4 @@
-# Painel da sinistralidade por Superintendências do DentranSP`no Estado de São Paulo
+# Painel da sinistralidade por Superintendências do DentranSP no Estado de São Paulo
 
 Este repositório contém um script em linguagem R focado no processamento, análise e visualização de dados de sinistros de trânsito no Estado de São Paulo. O código automatiza a geração de gráficos e rankings (exportados em formato SVG) segmentados por Superintendências, divisão organizacional do departamento pelo estado.
 
