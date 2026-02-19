@@ -1,16 +1,18 @@
 library(tidyverse)
+library(here)
 library(stringi)
 library(scales)
 library(lubridate)
 library(openxlsx)
 library(readxl)
 library(sf)
+library(ost.utils)
 
 
 sf_use_s2(FALSE) 
 
-CAMINHO_DADOS <- "C:/Users/Detran/OneDrive - PRODESP/Documentos/alocacao_superin/painelalocacao/data" #alteraraqui
-CAMINHO_COMPLETO_EXPORTACAO <- "C:/Users/Detran/OneDrive - PRODESP/Documentos/alocacao_superin/atlasfevereiro/teste_svg" #alteraraqui
+CAMINHO_DADOS <- here("data")
+CAMINHO_COMPLETO_EXPORTACAO <- here("output")
 
 if (!dir.exists(CAMINHO_COMPLETO_EXPORTACAO)) dir.create(CAMINHO_COMPLETO_EXPORTACAO, recursive = TRUE)
 
@@ -53,7 +55,31 @@ fix_coords <- function(x) {
   return(x)
 }
 
-message("Lendo arquivos...")
+
+message("Baixando dados Infosiga ...")
+temp <- tempdir()
+download_infosiga(temp)
+
+message("Lendo base auxiliar de municípios...")
+bd_municipios <- read_excel(full_path("bd_municipios.xlsx"), col_names = TRUE, .name_repair = "unique") %>%
+  rename(CD_MUN_KEY = "CD_MUN_7", SUPERINTENDENCIA = "SUPERINTENDENCIA", municipio_origem = "NM_MUN") %>%
+  select(municipio_origem, SUPERINTENDENCIA, CD_MUN_KEY) %>%
+  mutate(CD_MUN_KEY = as.character(CD_MUN_KEY))
+
+message("Carregando e limpando dados Infosiga...")
+
+df_sinistros_raw <- load_infosiga("sinistros", temp)
+sinistros <- clean_infosiga(df_sinistros_raw, "sinistros") %>%
+  mutate(cod_ibge = as.character(cod_ibge)) 
+
+
+df_veiculos_raw <- load_infosiga("veiculos", temp)
+veiculos <- clean_infosiga(df_veiculos_raw, "veiculos") %>%
+  select(id_sinistro, tipo_veiculo) 
+
+df_pessoas_raw <- load_infosiga("pessoas", temp)
+pessoas <- clean_infosiga(df_pessoas_raw, "pessoas") %>%
+  select(id_sinistro, tipo_vitima) 
 
 bd_municipios <- read_excel(full_path("bd_municipios.xlsx"), col_names = TRUE, .name_repair = "unique") %>%
   rename(CD_MUN_KEY = "CD_MUN_7", SUPERINTENDENCIA = "SUPERINTENDENCIA", municipio_origem = "NM_MUN") %>%
