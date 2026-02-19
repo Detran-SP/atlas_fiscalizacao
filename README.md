@@ -7,7 +7,7 @@ Para garantir a reprodutibilidade e evitar o armazenamento de arquivos pesados, 
 
 Em vez disso, o script utiliza o pacote `ost.utils` para baixar automaticamente os microdados mais recentes diretamente da base do **Infosiga SP** para um diretório temporário (`tempdir()`) durante a execução. Ao finalizar o R, esses arquivos pesados são descartados automaticamente da sua máquina.
 
-## 🗺️ Dados Espaciais e Auxiliares (Inclusos no Repositório)
+## Dados Espaciais e Auxiliares (Inclusos no Repositório)
 Para garantir a reprodução exata dos mapas e segmentações, este repositório já inclui na pasta `data/` os arquivos estruturais do projeto:
 
 * **Dados do GeoSampa (`distrito_municipal_v2.shp` e extensões):** Camada espacial oficial contendo a geometria dos distritos do município de São Paulo.
