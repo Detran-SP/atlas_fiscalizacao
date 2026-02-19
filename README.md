@@ -13,7 +13,7 @@ Os únicos arquivos estáticos necessários para rodar este projeto são:
 * `bd_municipios.xlsx`: Base de de-para relacionando municípios às suas respectivas Superintendências.
 * `distrito_municipal_v2.shp` e `regioes_municipais.xls` (Opcionais): Arquivos de shapefile e regiões para a geração de análises espaciais detalhadas na capital.
 
-## 🛠️ Tecnologias e Pacotes Utilizados
+## Tecnologias e Pacotes Utilizados
 * **Linguagem:** R
 * **Manipulação de Dados:** `tidyverse`, `lubridate`, `stringi`
 * **Leitura de Arquivos:** `readxl`, `openxlsx`
