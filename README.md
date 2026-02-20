@@ -14,7 +14,7 @@ Para garantir a reprodução exata dos mapas e segmentações, este repositório
 * **Divisão Administrativa (`regioes_municipais.xls`):** Tabela de relacionamento que mapeia cada distrito paulistano para a sua respectiva macrorregião (Leste, Norte, Sul, Oeste, Centro) e para a sua Prefeitura Regional.
 * **Superintendências (`bd_municipios.xlsx`):** Base de "de-para" que relaciona todos os municípios do Estado de São Paulo às suas respectivas Superintendências de trânsito.
 
-*Nota: Os microdados pesados de sinistros e vítimas não ficam armazenados aqui. O script faz o download automático via API do Infosiga SP.*
+*Nota: Os microdados de sinistros não estão armazenados aqui. O script faz o download automático via API do portal Infosiga.*
 
 ## Tecnologias e Pacotes Utilizados
 * **Linguagem:** R
